@@ -14,14 +14,21 @@ const config = {
   },
   devtool: 'source-map',
   module: {
-    rules:[{
+    rules:[
+    {
       test: /\.js$/,
       exclude: path.resolve(__dirname, 'node_modules'),
       loader: 'babel-loader',
       query: {
         presets: ['react', 'es2015']
       }
-    }]
+    },
+    {
+      test: /\.css$/,
+      exclude: path.resolve(__dirname, 'node_modules'),
+      loader: ['style-loader', 'css-loader']
+    }
+    ]
   }
 }
 
