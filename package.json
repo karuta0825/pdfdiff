@@ -1,11 +1,11 @@
 {
   "name": "pdfdiff",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./dist/main/main.js",
   "scripts": {
     "build": "webpack --mode production",
-    "start": "webpack-dev-server"
+    "start": "electron ./dist/main/main.js"
   },
   "keywords": [],
   "author": "",
