@@ -1,33 +1,50 @@
 import React, { Component } from 'react';
 import ReactDom from 'react-dom';
-import fs from 'fs';
-import path from 'path';
+import styles from '../css/app.css'
+import Loader from './Loader';
+import OverLook from './OverLook'
+import { Redirect, BrowserRouter, Route, Link } from 'react-router-dom'
+import {getImages, getRoot } from '../lib/Path';
+
+console.log(getRoot())
+
+const ROOT_PATH="/D:/mydev/electron/pdfdiff-master/dist/renderer/index.html"
 
 export default class App extends Component {
+  render() {
+    return (
+      <BrowserRouter>
+      <div>
+        <Route exact path={ROOT_PATH} component={Loader} />
+        <Route exact path="/" component={Loader} />
+        <Route path="/memo" component={OverLook} />
+      </div>
+      </BrowserRouter>
+    )
+  }
+}
 
+class Memo extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      file : 'hhh'
-    }
     this.onClick = this.onClick.bind(this);
   }
 
   onClick() {
-    console.log('clicked');
-    path.resolve('');
-    var file = fs.readFileSync('./dist/renderer/index.html','utf8');
-    this.setState({file:file});
+    const {history} = this.props;
+    history.push('/');
   }
 
-  render(){
+  render() {
     return (
-      <h1 onClick={this.onClick}>{this.state.file}</h1>
-    )
+      <button onClick={this.onClick}>back</button>
+    );
   }
 }
+
 
 ReactDom.render(
   <App />,
   document.getElementById('root')
 );
+
