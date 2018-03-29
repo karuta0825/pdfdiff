@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../css/app.css';
+import styles from '../../css/app.css';
 
 export default function ({title, imgSrc}) {
   return (

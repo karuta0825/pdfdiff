@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styles from '../css/app.css';
+import styles from '../../css/app.css';
 import FileSelect from './FileSelect';
 
 export default class Load extends Component {

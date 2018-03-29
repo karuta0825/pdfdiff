@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styles from '../css/app.css';
+import styles from '../../css/app.css';
 import path from 'path';
 import ImgView from './ImgView';
 
@@ -7,18 +7,18 @@ import ImgView from './ImgView';
 export default class ImageViewer extends Component {
   constructor(props){
     super(props);
-    console.log( path.resolve('') );
   }
 
   render() {
+    const {diff,before,after} = this.props;
     return (
       <div id="image-viewer">
         <div class="image-viewer__diff">
-          <ImgView title='diff' imgSrc=''/>
+          <ImgView title='diff' imgSrc={diff}/>
         </div>
         <div class="image-viewer__compare">
-          <ImgView title='left' imgSrc=''/>
-          <ImgView title='right' imgSrc=''/>
+          <ImgView title='left' imgSrc={before}/>
+          <ImgView title='right' imgSrc={after}/>
         </div>
       </div>
     );

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styles from '../css/app.css';
+import styles from '../../css/app.css';
 import { ipcRenderer as ipc } from 'electron';
 import fs from 'fs';
 
@@ -9,9 +9,9 @@ export default class FileSelect extends Component {
     this.onDrop = this.onDrop.bind(this);
     this.onClick = this.onClick.bind(this);
 
-    ipc.on('selected-directory', (e,path,position) => {
+    ipc.on('selected-file', (e,path,position) => {
       if ( position === this.props.position ) {
-        this.props.setFilePath(path[0], this.props.position);
+        this.props.setFilePath(path, this.props.position);
       }
     });
   }
