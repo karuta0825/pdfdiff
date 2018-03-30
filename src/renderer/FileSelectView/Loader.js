@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import styles from '../../css/app.css';
 import FileSelect from './FileSelect';
+import makeDiff from '../../utils/MakeDiffImg';
+import {ls} from '../../utils/FileOperation';
+import {getDiffDir, getBeforeDir, getAfterDir} from '../../utils/Path';
 
 export default class Load extends Component {
   constructor(props) {
@@ -25,8 +28,20 @@ export default class Load extends Component {
     }
   }
 
-  startDiff() {
+  async startDiff() {
+
     const {history} = this.props;
+    const before = await ls(getBeforeDir());
+    const after = await ls(getAfterDir());
+    const len = (before.length - after.length > 0) ? before.length : after.length
+
+    for ( var i=0; i < len-1; i += 1) {
+      await makeDiff(
+        getBeforeDir() + '/' + before[i],
+        getAfterDir() + '/' + after[i],
+        getDiffDir() + '/' + before[i]
+      )
+    }
     history.push('/memo');
   }
 
