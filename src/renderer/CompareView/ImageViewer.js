@@ -10,11 +10,11 @@ export default class ImageViewer extends Component {
   }
 
   render() {
-    const {diff,before,after} = this.props;
+    const {diff,before,after, history} = this.props;
     return (
       <div id="image-viewer">
         <div class="image-viewer__diff">
-          <ImgView title='diff' imgSrc={diff}/>
+          <ImgView title='diff' imgSrc={diff} history={history}/>
         </div>
         <div class="image-viewer__compare">
           <ImgView title='left' imgSrc={before}/>

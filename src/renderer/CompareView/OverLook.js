@@ -19,7 +19,7 @@ export default class OverLook extends Component {
     ls( getDiffDir() )
     .then( list => {
       this.setState({thumbnails:list, targetSrc:list[0]});
-     })
+    })
   }
 
   setImageSrc(i) {
@@ -41,6 +41,7 @@ export default class OverLook extends Component {
           diff={ targetSrc && getDiffDir() + '/' + targetSrc || ''}
           before={ targetSrc && getBeforeDir() + '/' + targetSrc || ''}
           after={ targetSrc && getAfterDir() + '/' + targetSrc || ''}
+          history={this.props.history}
         />
       </div>
     );
