@@ -7,13 +7,12 @@ export function ls(path) {
       if (err) {
         rej(err);
       }
-      res(files);
+      const sortfiles = files.sort( (a,b) => {
+        a = a.match(/\d+/);
+        b = b.match(/\d+/);
+        return a-b
+      })
+      res(sortfiles);
     });
   })
 }
-
-// export 
-
-//       var fileList = files.filter(function(file){
-//           return fs.statSync(file).isFile() && /.*\.csv$/.test(file); //絞り込み
-//       })
