@@ -9,9 +9,11 @@ export default function ThumbList({thumbnails, onClick}) {
   });
 
   return (
-    <ul id='thumbnails'>
-      {list}
-    </ul>
+    <div id='thumbnails'>
+      <ul>
+        {list}
+      </ul>
+    </div>
   );
 
 }

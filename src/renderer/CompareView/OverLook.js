@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import styles from '../../css/app.css';
 import ThumbList from './ThumbList';
 import ImageViewer from './ImageViewer';
-import path from 'path';
 import {ls} from '../../utils/FileOperation';
-import {getDiffDir, getOS} from '../../utils/Path';
+import {getDiffDir, getBeforeDir, getAfterDir} from '../../utils/Path';
 
 export default class OverLook extends Component {
   constructor(props){
@@ -14,13 +13,11 @@ export default class OverLook extends Component {
       targetSrc : ''
     }
     this.setImageSrc = this.setImageSrc.bind(this);
-    console.log(getOS());
   }
 
   componentWillMount() {
     ls( getDiffDir() )
     .then( list => {
-      debugger
       this.setState({thumbnails:list, targetSrc:list[0]});
      })
   }
@@ -41,9 +38,9 @@ export default class OverLook extends Component {
       <div id="overlook">
         <ThumbList thumbnails={list} onClick={this.setImageSrc}/>
         <ImageViewer
-          diff={ getDiffDir() + '/' + targetSrc}
-          before={ getDiffDir() + '/' + targetSrc}
-          after={ getDiffDir() + '/' + targetSrc} 
+          diff={ targetSrc && getDiffDir() + '/' + targetSrc || ''}
+          before={ targetSrc && getBeforeDir() + '/' + targetSrc || ''}
+          after={ targetSrc && getAfterDir() + '/' + targetSrc || ''}
         />
       </div>
     );
