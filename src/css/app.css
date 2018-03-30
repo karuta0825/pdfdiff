@@ -1,15 +1,101 @@
-#main {
- text-align: center;
+html, body {
+  height: 100%;
+  width: 100%;
+  margin:0;
 }
 
-.title {
-  color: skyblue;
+div {
+  height: 100%;
 }
 
 #thumbnails {
+  min-width: 250px;
+  overflow-y: scroll;
+  background: #4e4e4e;
+}
+
+#thumbnails ul {
   list-style: none;
 }
 
-.thumbnail__img {
+.thumbnail__img, .thumbnail__index {
   width: 150px;
+}
+
+.thumbnail__index {
+  text-align: center;
+}
+
+#overlook {
+  display: flex;
+  height: 100%;
+}
+
+#image-viewer {
+  height: 100%;
+  width: 100%;
+  background: #f1f1f1;
+}
+
+.imgView__title {
+  position: absolute;
+  top:5px;
+  left: 5px;
+  width:100px;
+  background:#4e4e4e;
+  color: white;
+  text-align: center;
+  height: 20px
+}
+
+
+.image-viewer__diff {
+  height:50%;
+}
+
+.imgView.diff {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border:0.1px solid;
+}
+
+.image-viewer__diff .imgView__img {
+  height: 90%;
+}
+
+.image-viewer__compare {
+  height:50%;
+  display: flex;
+}
+
+.imgView.left, .imgView.right {
+  flex:1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-left:0.1px solid;
+  border-bottom:0.1px solid;
+}
+
+.imgView.right {
+  border-right: 0.1px solid;
+}
+
+.imgView.left .imgView__img,
+.imgView.right .imgView__img {
+  width: 90%;
+  max-width: 500px;
+}
+
+.imgView__btn {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  color:white;
+  width: 35px;
+  height:35px;
+  border-radius: 50%;
 }
