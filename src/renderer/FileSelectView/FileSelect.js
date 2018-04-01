@@ -30,14 +30,18 @@ export default class FileSelect extends Component {
     const {path} = this.props;
     return (
       <div className='file-select'>
-        <div className='file-select__path'>{path}</div>
+        <div className='file-select__path'>
+          <span className='path-name'>{path}</span>
+        </div>
         <div className="file-select__zone"
           onDragOver={ event => event.preventDefault() }
           onDrop={this.onDrop}
         >
-          ドラッグ＆ドロップしてください
+          <span className='zone-name' >ドラッグ＆ドロップしてください</span>
         </div>
-        <button className="file-select__btn" onClick={this.onClick}>button</button>
+        <div className="file-select__btn">
+          <button onClick={this.onClick}>ファイル選択</button>
+        </div>
       </div>
     )
   }

@@ -10,8 +10,8 @@ export default class Load extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      leftPath : '',
-      rightPath : ''
+      leftPath : 'ファイル名',
+      rightPath : 'ファイル名'
     }
     this.setFilePath = this.setFilePath.bind(this);
     this.startDiff = this.startDiff.bind(this);
@@ -84,12 +84,14 @@ export default class Load extends Component {
   render(){
     const {leftPath, rightPath} = this.state;
     return (
-      <div id="load">
+      <div id="load" onDragOver={e => e.preventDefault()} onDrop={e => e.preventDefault()}>
         <div id='file-selects'>
           <FileSelect path={leftPath} setFilePath={this.setFilePath} position='left'/>
           <FileSelect path={rightPath} setFilePath={this.setFilePath} position='right'/>
         </div>
-        <button className="compare-btn" onClick={this.startDiff}>比較</button>
+        <div id='compare-action'>
+          <button className="compare-action__btn" onClick={this.startDiff}>比較</button>
+        </div>
       </div>
     );
   }

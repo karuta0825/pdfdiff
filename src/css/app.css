@@ -8,6 +8,57 @@ div {
   height: 100%;
 }
 
+#file-selects {
+  display: flex;
+  height: 95%;
+}
+
+#compare-action {
+  height: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+#compare-action button {
+  margin-right: 10px;
+}
+
+.file-select {
+  flex:1;
+  height: 95%;
+  border-style:dotted;
+  border-radius: 10px;
+  margin:10px 10px 0 10px;
+}
+
+.file-select__path, .file-select__btn {
+  height: 5%;
+  margin:10px;
+}
+
+.file-select__path {
+  margin:5px;
+}
+
+.file-select__zone {
+  height: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.file-select__btn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin:-5px;
+}
+
+.file-select__btn button {
+  margin-right: 10px
+}
+
 #thumbnails {
   min-width: 250px;
   overflow-y: scroll;
