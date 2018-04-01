@@ -5,6 +5,7 @@ import makeDiff from '../../utils/MakeDiffImg';
 import convert from '../../utils/Pdf2Img';
 import {ls} from '../../utils/FileOperation';
 import {getDiffDir, getBeforeDir, getAfterDir} from '../../utils/Path';
+import Modal from '../Modal';
 
 export default class Load extends Component {
   constructor(props) {
@@ -79,6 +80,7 @@ export default class Load extends Component {
     }
 
     history.push('/memo');
+
   }
 
   render(){
@@ -90,7 +92,7 @@ export default class Load extends Component {
           <FileSelect path={rightPath} setFilePath={this.setFilePath} position='right'/>
         </div>
         <div id='compare-action'>
-          <button className="compare-action__btn" onClick={this.startDiff}>比較</button>
+          <Modal startDiff={this.startDiff}/>
         </div>
       </div>
     );

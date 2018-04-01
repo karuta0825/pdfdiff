@@ -5,17 +5,20 @@ import Loader from './FileSelectView/Loader';
 import OverLook from './CompareView/OverLook'
 import { BrowserRouter, Route } from 'react-router-dom'
 import { getRootHtmlPath } from '../utils/Path';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 export default class App extends Component {
   render() {
     return (
-      <BrowserRouter>
-      <div>
-        <Route exact path={getRootHtmlPath()} component={Loader} />
-        <Route exact path="/" component={Loader} />
-        <Route path="/memo" component={OverLook} />
-      </div>
-      </BrowserRouter>
+      <MuiThemeProvider>
+        <BrowserRouter>
+        <div id='router'>
+          <Route exact path={getRootHtmlPath()} component={Loader} />
+          <Route exact path="/" component={Loader} />
+          <Route path="/memo" component={OverLook} />
+        </div>
+        </BrowserRouter>
+      </MuiThemeProvider>
     )
   }
 }

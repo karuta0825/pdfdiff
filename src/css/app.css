@@ -4,17 +4,18 @@ html, body {
   margin:0;
 }
 
-div {
-  height: 100%;
+
+#root, #router, #load{
+  height: 100%
 }
 
 #file-selects {
   display: flex;
-  height: 95%;
+  height: 93%;
 }
 
 #compare-action {
-  height: 5%;
+  height: 7%;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -26,10 +27,10 @@ div {
 
 .file-select {
   flex:1;
-  height: 95%;
+  height: 97%;
   border-style:dotted;
   border-radius: 10px;
-  margin:10px 10px 0 10px;
+  margin:10px 20px 0 10px;
 }
 
 .file-select__path, .file-select__btn {
@@ -52,7 +53,7 @@ div {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  margin:-5px;
+  margin:-10px 0 0 0;
 }
 
 .file-select__btn button {
@@ -110,6 +111,7 @@ div {
   justify-content: center;
   position: relative;
   border:0.1px solid;
+  height: 100%;
 }
 
 .image-viewer__diff .imgView__img {
