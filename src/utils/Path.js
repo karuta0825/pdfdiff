@@ -5,7 +5,11 @@ export function getRoot() {
 }
 
 export function getRootHtmlPath() {
-  return getRoot() + '/dist/renderer/index.html';
+  const path = getRoot() + '/dist/renderer/index.html';
+  if (getOS() === 'win32') {
+    return '/' + path.replace(/\\/g,'/');
+  }
+  return path;
 }
 
 export function getImgDir() {

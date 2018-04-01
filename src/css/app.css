@@ -86,8 +86,8 @@ div {
 
 .imgView.left .imgView__img,
 .imgView.right .imgView__img {
-  width: 90%;
   max-width: 500px;
+  max-height: 80%;
 }
 
 .imgView__btn {
