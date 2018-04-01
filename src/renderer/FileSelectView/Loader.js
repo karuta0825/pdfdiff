@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styles from '../../css/app.css';
 import FileSelect from './FileSelect';
 import makeDiff from '../../utils/MakeDiffImg';
-import convert from '../../utils/Pdf2Pic';
+import convert from '../../utils/Pdf2Img';
 import {ls} from '../../utils/FileOperation';
 import {getDiffDir, getBeforeDir, getAfterDir} from '../../utils/Path';
 
@@ -36,7 +36,7 @@ export default class Load extends Component {
 
   canConvertImg(filePath) {
     const ext = this.getExtension(filePath);
-    if ( ext !== 'pdf' && ext !== 'png' && ext !== 'jpg' && ext !== 'bmp') {
+    if ( ext !== 'pdf' ) {
       return false
     }
     return true;
@@ -50,9 +50,6 @@ export default class Load extends Component {
       throw new Error('ファイルが指定されていないか、拡張子が正しくありません。')
     }
 
-    console.log(leftPath);
-    console.log(getBeforeDir());
-
     await convert(leftPath, getBeforeDir());
     await convert(rightPath, getAfterDir());
 
@@ -65,12 +62,11 @@ export default class Load extends Component {
     try {
 
       await this.makeImgs();
-
       const before = await ls(getBeforeDir());
       const after = await ls(getAfterDir());
       const len = (before.length - after.length > 0) ? before.length : after.length
 
-      for ( var i=0; i < len-1; i += 1) {
+      for ( var i=0; i < len; i += 1) {
         await makeDiff(
           getBeforeDir() + '/' + before[i],
           getAfterDir() + '/' + after[i],
