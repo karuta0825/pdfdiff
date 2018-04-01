@@ -9,17 +9,24 @@ const styles = theme => ({
   }
 });
 
-function RaisedButtons(props) {
-  const { classes } = props;
+function FullWidthButton(props) {
+  const { classes, isDisabled } = props;
+  if (isDisabled) {
+    return (
+      <Button variant="raised" disabled className={classes.button} onClick={props.onClick}>
+        {props.name}
+      </Button>
+    );
+  }
   return (
-    <Button variant="raised" className={classes.button} onClick={props.onClick}>
+    <Button variant="raised"  className={classes.button} onClick={props.onClick}>
       {props.name}
     </Button>
   );
 }
 
-RaisedButtons.propTypes = {
+FullWidthButton.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(RaisedButtons);
+export default withStyles(styles)(FullWidthButton);

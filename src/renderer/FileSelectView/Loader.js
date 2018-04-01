@@ -6,28 +6,41 @@ import convert from '../../utils/Pdf2Img';
 import {ls} from '../../utils/FileOperation';
 import {getDiffDir, getBeforeDir, getAfterDir} from '../../utils/Path';
 import Modal from '../Modal';
+import Bar from '../Bar';
 
 export default class Load extends Component {
   constructor(props) {
     super(props);
     this.state = {
       leftPath : 'ファイル名',
-      rightPath : 'ファイル名'
+      rightPath : 'ファイル名',
+      isDisabled : true
     }
     this.setFilePath = this.setFilePath.bind(this);
     this.startDiff = this.startDiff.bind(this);
   }
 
   setFilePath(path, place) {
-    const {leftPath, rightPath} = this.state;
+    const {leftPath, rightPath, isDisabled} = this.state;
 
     if ( place === 'right') {
-      this.setState({leftPath:leftPath, rightPath:path})
+      if ( leftPath !== 'ファイル名' ) {
+        this.setState({leftPath:leftPath, rightPath:path, isDisabled:false})
+      }
+      else {
+        this.setState({leftPath:leftPath, rightPath:path, isDisabled:true})
+      }
     }
 
     if ( place === 'left') {
-      this.setState({leftPath:path, rightPath:rightPath})
+      if (rightPath !== 'ファイル名') {
+        this.setState({leftPath:path, rightPath:rightPath, isDisabled:false})
+      }
+      else {
+        this.setState({leftPath:path, rightPath:rightPath, isDisabled:true})
+      }
     }
+
   }
 
   getExtension(path) {
@@ -87,12 +100,13 @@ export default class Load extends Component {
     const {leftPath, rightPath} = this.state;
     return (
       <div id="load" onDragOver={e => e.preventDefault()} onDrop={e => e.preventDefault()}>
+        <Bar />
         <div id='file-selects'>
           <FileSelect path={leftPath} setFilePath={this.setFilePath} position='left'/>
           <FileSelect path={rightPath} setFilePath={this.setFilePath} position='right'/>
         </div>
         <div id='compare-action'>
-          <Modal startDiff={this.startDiff}/>
+          <Modal startDiff={this.startDiff} isDisabled={this.state.isDisabled}/>
         </div>
       </div>
     );

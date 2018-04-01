@@ -11,11 +11,13 @@ html, body {
 
 #file-selects {
   display: flex;
-  height: 93%;
+  height: 79%;
+  max-width: 1000px;
+  margin:0 auto;
 }
 
 #compare-action {
-  height: 7%;
+  height: 10%;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -28,9 +30,9 @@ html, body {
 .file-select {
   flex:1;
   height: 97%;
-  border-style:dotted;
+  border: 2px dashed rgb(103,58,183);
   border-radius: 10px;
-  margin:10px 20px 0 10px;
+  margin:10px 20px 0 20px;
 }
 
 .file-select__path, .file-select__btn {

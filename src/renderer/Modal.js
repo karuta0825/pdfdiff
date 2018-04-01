@@ -12,7 +12,7 @@ import FullWidthButton from './FullWidthButton';
 const styles = {
   wrapper : {
     width:'100%',
-    margin:'0 10px'
+    margin:'0 20px'
   }
 }
 
@@ -40,7 +40,7 @@ class Modal extends React.Component {
   render() {
     return (
       <div style={styles.wrapper}>
-        <FullWidthButton onClick={this.handleClickOpen} name='比較' />
+        <FullWidthButton onClick={this.handleClickOpen} name='比較' isDisabled={this.props.isDisabled}/>
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
