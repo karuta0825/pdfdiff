@@ -6,8 +6,8 @@ import Dialog, {
   DialogContentText,
   DialogTitle,
 } from 'material-ui/Dialog';
-import Circular from './Circular';
-import FullWidthButton from './FullWidthButton';
+import Circular from '../UtilComponents/Circular';
+import FullWidthButton from '../UtilComponents/FullWidthButton';
 
 const styles = {
   wrapper : {

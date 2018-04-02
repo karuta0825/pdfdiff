@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import styles from '../../css/app.css';
 import { ipcRenderer as ipc } from 'electron';
 import fs from 'fs';
+import FloatingButton from '../UtilComponents/FloatingButton';
+import Typography from 'material-ui/Typography';
 
 export default class FileSelect extends Component {
   constructor(props) {
@@ -31,16 +33,20 @@ export default class FileSelect extends Component {
     return (
       <div className='file-select'>
         <div className='file-select__path'>
-          <span className='path-name'>{path}</span>
+          <Typography variant="body2" color="inherit">
+            {path}
+          </Typography>
         </div>
         <div className="file-select__zone"
           onDragOver={ event => event.preventDefault() }
           onDrop={this.onDrop}
         >
-          <span className='zone-name' >ドラッグ＆ドロップしてください</span>
+          <Typography variant="body2" color="inherit">
+            ドラッグ＆ドロップしてください
+          </Typography>
         </div>
         <div className="file-select__btn">
-          <button onClick={this.onClick}>ファイル選択</button>
+          <FloatingButton onClick={this.onClick} size="mini" />
         </div>
       </div>
     )

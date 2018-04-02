@@ -16,10 +16,10 @@ const myStyles = {
 }
 
 function CircularIndeterminate(props) {
-  const { classes } = props;
+  const { classes, size } = props;
   return (
     <div style={myStyles}>
-      <CircularProgress className={classes.progress} size={70} />
+      <CircularProgress className={classes.progress} size={size} />
     </div>
   );
 }

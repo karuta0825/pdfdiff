@@ -5,39 +5,44 @@ import makeDiff from '../../utils/MakeDiffImg';
 import convert from '../../utils/Pdf2Img';
 import {ls} from '../../utils/FileOperation';
 import {getDiffDir, getBeforeDir, getAfterDir} from '../../utils/Path';
-import Modal from '../Modal';
-import Bar from '../Bar';
+import MakingModal from './MakingModal';
+import Header from './Header';
+import ErrorDialog from '../UtilComponents/ErrorDialog';
+
+const unselected = '未選択';
 
 export default class Load extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      leftPath : 'ファイル名',
-      rightPath : 'ファイル名',
-      isDisabled : true
+      leftPath : unselected,
+      rightPath : unselected,
+      isDisabled : true,
+      err: null
     }
     this.setFilePath = this.setFilePath.bind(this);
     this.startDiff = this.startDiff.bind(this);
+    this.closeError = this.closeError.bind(this);
   }
 
   setFilePath(path, place) {
     const {leftPath, rightPath, isDisabled} = this.state;
 
     if ( place === 'right') {
-      if ( leftPath !== 'ファイル名' ) {
-        this.setState({leftPath:leftPath, rightPath:path, isDisabled:false})
+      if ( leftPath !== unselected ) {
+        this.setState({leftPath:leftPath, rightPath:path, isDisabled:false, err:null})
       }
       else {
-        this.setState({leftPath:leftPath, rightPath:path, isDisabled:true})
+        this.setState({leftPath:leftPath, rightPath:path, isDisabled:true, err:null})
       }
     }
 
     if ( place === 'left') {
-      if (rightPath !== 'ファイル名') {
-        this.setState({leftPath:path, rightPath:rightPath, isDisabled:false})
+      if (rightPath !== unselected) {
+        this.setState({leftPath:path, rightPath:rightPath, isDisabled:false, err:null})
       }
       else {
-        this.setState({leftPath:path, rightPath:rightPath, isDisabled:true})
+        this.setState({leftPath:path, rightPath:rightPath, isDisabled:true, err:null})
       }
     }
 
@@ -61,7 +66,7 @@ export default class Load extends Component {
     const {leftPath, rightPath} = this.state;
 
     if ( !this.canConvertImg(leftPath) || !this.canConvertImg(rightPath) )  {
-      throw new Error('ファイルが指定されていないか、拡張子が正しくありません。')
+      throw new Error('pdfを選択してください')
     }
 
     await convert(leftPath, getBeforeDir());
@@ -88,26 +93,31 @@ export default class Load extends Component {
         )
       }
 
-    }catch(e) {
-      throw e;
-    }
+      history.push('/memo');
 
-    history.push('/memo');
+    }catch(e) {
+      this.setState({isDisabled:true, err:e})
+    }
 
   }
 
+  closeError() {
+    this.setState({err:null})
+  }
+
   render(){
-    const {leftPath, rightPath} = this.state;
+    const {leftPath, rightPath, err } = this.state;
     return (
       <div id="load" onDragOver={e => e.preventDefault()} onDrop={e => e.preventDefault()}>
-        <Bar />
+        <Header />
         <div id='file-selects'>
           <FileSelect path={leftPath} setFilePath={this.setFilePath} position='left'/>
           <FileSelect path={rightPath} setFilePath={this.setFilePath} position='right'/>
         </div>
         <div id='compare-action'>
-          <Modal startDiff={this.startDiff} isDisabled={this.state.isDisabled}/>
+          <MakingModal startDiff={this.startDiff} isDisabled={this.state.isDisabled}/>
         </div>
+        <ErrorDialog isOpen={ (err) ? true : false } message={ err && err.message || '' } closeError={this.closeError}/>
       </div>
     );
   }
