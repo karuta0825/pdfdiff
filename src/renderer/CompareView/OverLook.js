@@ -4,6 +4,13 @@ import ThumbList from './ThumbList';
 import ImageViewer from './ImageViewer';
 import {ls} from '../../utils/FileOperation';
 import {getDiffDir, getBeforeDir, getAfterDir} from '../../utils/Path';
+import Header from './Header';
+
+const closeStyles = {
+  wrapper : {
+    height : '100%'
+  }
+}
 
 export default class OverLook extends Component {
   constructor(props){
@@ -13,6 +20,7 @@ export default class OverLook extends Component {
       targetSrc : ''
     }
     this.setImageSrc = this.setImageSrc.bind(this);
+    this.backLoadView = this.backLoadView.bind(this);
   }
 
   componentWillMount() {
@@ -29,20 +37,26 @@ export default class OverLook extends Component {
     })
   }
 
+  backLoadView() {
+    this.props.history.push('/');
+  }
+
   render() {
     const {thumbnails, targetSrc} = this.state;
     const list = thumbnails.map( item => {
       return getDiffDir() + '/' + item;
     })
     return (
-      <div id="overlook">
-        <ThumbList thumbnails={list} onClick={this.setImageSrc}/>
-        <ImageViewer
-          diff={ targetSrc && getDiffDir() + '/' + targetSrc || ''}
-          before={ targetSrc && getBeforeDir() + '/' + targetSrc || ''}
-          after={ targetSrc && getAfterDir() + '/' + targetSrc || ''}
-          history={this.props.history}
-        />
+      <div style={{height:'100%'}}>
+        <Header backLoadView={this.backLoadView}/>
+        <div id="overlook">
+          <ThumbList thumbnails={list} onClick={this.setImageSrc}/>
+          <ImageViewer
+            diff={ targetSrc && getDiffDir() + '/' + targetSrc || ''}
+            before={ targetSrc && getBeforeDir() + '/' + targetSrc || ''}
+            after={ targetSrc && getAfterDir() + '/' + targetSrc || ''}
+          />
+        </div>
       </div>
     );
   }

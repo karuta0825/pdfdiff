@@ -13,7 +13,7 @@ export default class App extends Component {
       <MuiThemeProvider>
         <BrowserRouter>
         <div id='router'>
-          <Route exact path={getRootHtmlPath()} component={Loader} />
+          <Route exact path={getRootHtmlPath()} component={OverLook} />
           <Route exact path="/" component={Loader} />
           <Route path="/memo" component={OverLook} />
         </div>

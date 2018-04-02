@@ -66,7 +66,7 @@ export default class Load extends Component {
     const {leftPath, rightPath} = this.state;
 
     if ( !this.canConvertImg(leftPath) || !this.canConvertImg(rightPath) )  {
-      throw new Error('pdfを選択してください')
+      throw new Error('選択ファイルの拡張子が正しくありません。pdfを選択してください')
     }
 
     await convert(leftPath, getBeforeDir());
@@ -95,7 +95,7 @@ export default class Load extends Component {
 
       history.push('/memo');
 
-    }catch(e) {
+    } catch(e) {
       this.setState({isDisabled:true, err:e})
     }
 
