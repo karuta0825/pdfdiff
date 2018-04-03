@@ -95,11 +95,11 @@ html, body {
   position: absolute;
   top:5px;
   left: 5px;
-  width:100px;
   background:#4e4e4e;
   color: white;
   text-align: center;
-  height: 20px
+  height: 20px;
+  padding:0 2px;
 }
 
 
@@ -175,7 +175,6 @@ html, body {
   height: 90%;
 }
 
-/*.imageView.diff--TF .imgView__img {*/
 .image-viewer--diff--TF .imgView__img {
   max-height: 85%;
 }
@@ -202,11 +201,9 @@ html, body {
   border-left: 0.1px solid #4e4e4e;
 }
 
-
-
 .imgView.left .imgView__img,
 .imgView.right .imgView__img {
-  max-width: 20em;
+  max-width: 30em;
   max-height: 80%;
 }
 
