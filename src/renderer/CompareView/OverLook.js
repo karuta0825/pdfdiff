@@ -43,9 +43,10 @@ export default class OverLook extends Component {
 
   render() {
     const {thumbnails, targetSrc} = this.state;
+    const {leftPath, rightPath} = this.props;
     const list = thumbnails.map( item => {
       return getDiffDir() + '/' + item;
-    })
+    });
     return (
       <div style={{height:'100%'}}>
         <Header backLoadView={this.backLoadView}/>
@@ -55,6 +56,8 @@ export default class OverLook extends Component {
             diff={ targetSrc && getDiffDir() + '/' + targetSrc || ''}
             before={ targetSrc && getBeforeDir() + '/' + targetSrc || ''}
             after={ targetSrc && getAfterDir() + '/' + targetSrc || ''}
+            leftPath={leftPath}
+            rightPath={rightPath}
           />
         </div>
       </div>

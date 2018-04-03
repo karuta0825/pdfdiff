@@ -114,7 +114,7 @@ export default class ImageViewer extends Component {
 
 
   render() {
-    const {diff,before,after} = this.props;
+    const {diff,before,after,leftPath,rightPath} = this.props;
     const {isExpandDiff, isExpandCompare} = this.state;
     return (
       <div id="image-viewer">
@@ -133,8 +133,8 @@ export default class ImageViewer extends Component {
             </IconButton>
           </div>
           <div class={this.getImageViewerCompareImgsClass()}>
-            <ImgView title='title' imgSrc={before} className='left' />
-            <ImgView title='title' imgSrc={after} className='right' />
+            <ImgView title={leftPath} imgSrc={before} className='left' />
+            <ImgView title={rightPath} imgSrc={after} className='right' />
           </div>
         </div>
       </div>
