@@ -44,11 +44,13 @@ class MakingModal extends React.Component {
           disableBackdropClick
           disableEscapeKeyDown
         >
-          <DialogTitle id="alert-dialog-title">{"差分画像作成中"}</DialogTitle>
+          <DialogTitle id="alert-dialog-title">
+            差分イメージ作成中
+          </DialogTitle>
           <DialogContent>
             <DialogContentText>
               <Circular />
-              pdfのページ数が100を超えると処理に時間がかかります.
+              pdfのページ数が多いと処理に時間がかかります.
             </DialogContentText>
           </DialogContent>
           <DialogActions>
