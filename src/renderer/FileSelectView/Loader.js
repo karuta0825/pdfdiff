@@ -8,15 +8,14 @@ import {getDiffDir, getBeforeDir, getAfterDir} from '../../utils/Path';
 import MakingModal from './MakingModal';
 import Header from './Header';
 import ErrorDialog from '../UtilComponents/ErrorDialog';
-
-const unselected = '未選択';
+import {UNSELECTED} from '../constants';
 
 export default class Load extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      leftPath : unselected,
-      rightPath : unselected,
+      leftPath : UNSELECTED,
+      rightPath : UNSELECTED,
       isDisabled : true,
       err: null
     }
@@ -30,11 +29,11 @@ export default class Load extends Component {
 
     setPath(path,place);
 
-    if (place === 'right' && leftPath !== '' ) {
+    if (place === 'right' && leftPath !== UNSELECTED ) {
       this.setState({isDisabled:false});
     }
 
-    if( place === 'left' && rightPath !== '' ) {
+    if( place === 'left' && rightPath !== UNSELECTED ) {
       this.setState({isDisabled:false});
     }
   }
@@ -84,7 +83,7 @@ export default class Load extends Component {
         )
       }
 
-      history.push('/memo');
+      history.push('/result');
 
     } catch(e) {
       this.setState({isDisabled:true, err:e})

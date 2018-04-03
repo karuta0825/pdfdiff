@@ -6,13 +6,15 @@ import OverLook from './CompareView/OverLook'
 import { BrowserRouter, Route } from 'react-router-dom'
 import { getRootHtmlPath } from '../utils/Path';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import {UNSELECTED} from './constants';
+
 
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      leftPath : '',
-      rightPath : ''
+      leftPath : UNSELECTED,
+      rightPath : UNSELECTED
     }
     this.setPath = this.setPath.bind(this);
   }
@@ -36,8 +38,8 @@ export default class App extends Component {
         <BrowserRouter>
         <div id='router'>
           <Route exact path={getRootHtmlPath()} render={(props)=> <Loader setPath={this.setPath} rightPath={rightPath} leftPath={leftPath} history={props.history}/>} />
-          <Route exact path="/" component={Loader} />
-          <Route path="/memo" render={() => <OverLook leftPath={leftPath} rightPath={rightPath} />}/>
+          <Route exact path="/" render={(props)=> <Loader setPath={this.setPath} rightPath={UNSELECTED} leftPath={UNSELECTED} history={props.history}/>}  />
+          <Route path="/result" render={(props) => <OverLook leftPath={leftPath} rightPath={rightPath} history={props.history} />}/>
         </div>
         </BrowserRouter>
       </MuiThemeProvider>
