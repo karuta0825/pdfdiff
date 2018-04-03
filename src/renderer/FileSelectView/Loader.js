@@ -26,26 +26,17 @@ export default class Load extends Component {
   }
 
   setFilePath(path, place) {
-    const {leftPath, rightPath, isDisabled} = this.state;
+    const {leftPath, rightPath, setPath} = this.props;
 
-    if ( place === 'right') {
-      if ( leftPath !== unselected ) {
-        this.setState({leftPath:leftPath, rightPath:path, isDisabled:false, err:null})
-      }
-      else {
-        this.setState({leftPath:leftPath, rightPath:path, isDisabled:true, err:null})
-      }
+    setPath(path,place);
+
+    if (place === 'right' && leftPath !== '' ) {
+      this.setState({isDisabled:false});
     }
 
-    if ( place === 'left') {
-      if (rightPath !== unselected) {
-        this.setState({leftPath:path, rightPath:rightPath, isDisabled:false, err:null})
-      }
-      else {
-        this.setState({leftPath:path, rightPath:rightPath, isDisabled:true, err:null})
-      }
+    if( place === 'left' && rightPath !== '' ) {
+      this.setState({isDisabled:false});
     }
-
   }
 
   getExtension(path) {
@@ -63,7 +54,7 @@ export default class Load extends Component {
 
   async makeImgs() {
 
-    const {leftPath, rightPath} = this.state;
+    const {leftPath, rightPath} = this.props;
 
     if ( !this.canConvertImg(leftPath) || !this.canConvertImg(rightPath) )  {
       throw new Error('選択ファイルの拡張子が正しくありません。pdfを選択してください')
@@ -83,7 +74,7 @@ export default class Load extends Component {
       await this.makeImgs();
       const before = await ls(getBeforeDir());
       const after = await ls(getAfterDir());
-      const len = (before.length - after.length > 0) ? before.length : after.length
+      const len = (before.length - after.length > 0) ? after.length : before.length
 
       for ( var i=0; i < len; i += 1) {
         await makeDiff(
@@ -106,7 +97,8 @@ export default class Load extends Component {
   }
 
   render(){
-    const {leftPath, rightPath, err } = this.state;
+    const {leftPath, rightPath} = this.props;
+    const {err, isDisabled} = this.state;
     return (
       <div id="load" onDragOver={e => e.preventDefault()} onDrop={e => e.preventDefault()}>
         <Header />
