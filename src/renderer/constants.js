@@ -1,0 +1,1 @@
+export const UNSELECTED = '未選択';
