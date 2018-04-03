@@ -99,7 +99,8 @@ html, body {
   color: white;
   text-align: center;
   height: 20px;
-  padding:0 2px;
+  padding:0 5px;
+  min-width:100px;
 }
 
 
