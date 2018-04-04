@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import styles from '../../css/app.css';
 import path from 'path';
 import ImgView from './ImgView';
-import IconButton from 'material-ui/IconButton';
-import ExpandLess from 'material-ui-icons/ExpandLess';
-import ExpandMore from 'material-ui-icons/ExpandMore';
+import Expander from './Expander'
 
 export default class ImageViewer extends Component {
   constructor(props){
@@ -13,6 +11,7 @@ export default class ImageViewer extends Component {
       isExpandDiff : true,
       isExpandCompare : true
     }
+    this.toggleExpand = this.toggleExpand.bind(this);
   }
 
   toggleExpand(position) {
@@ -112,26 +111,17 @@ export default class ImageViewer extends Component {
 
   }
 
-
   render() {
     const {diff,before,after,leftPath,rightPath} = this.props;
     const {isExpandDiff, isExpandCompare} = this.state;
     return (
       <div id="image-viewer">
         <div class={this.getImageViewerDiffClass()}>
-          <div class='image-viewer-expander'>
-            <IconButton aria-label="ExpandLess" onClick={() => {this.toggleExpand('diff')}}>
-              { isExpandDiff ? <ExpandLess /> : <ExpandMore /> }
-            </IconButton>
-          </div>
+          <Expander isExpand={isExpandDiff} onClick={this.toggleExpand} position={'diff'} />
           <ImgView title='diff' imgSrc={diff} className={this.getImgViewDiffClass()} />
         </div>
         <div class={this.getImageViewerCompareClass()}>
-          <div class='image-viewer-expander'>
-            <IconButton aria-label="ExpandLess" onClick={() => {this.toggleExpand('compare')}}>
-              { isExpandCompare ? <ExpandLess /> : <ExpandMore /> }
-            </IconButton>
-          </div>
+          <Expander isExpand={isExpandCompare} onClick={this.toggleExpand} position={'compare'} />
           <div class={this.getImageViewerCompareImgsClass()}>
             <ImgView title={leftPath} imgSrc={before} className='left' />
             <ImgView title={rightPath} imgSrc={after} className='right' />
