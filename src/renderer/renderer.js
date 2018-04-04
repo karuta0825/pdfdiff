@@ -17,18 +17,23 @@ export default class App extends Component {
       rightPath : UNSELECTED
     }
     this.setPath = this.setPath.bind(this);
+    this.clearPath = this.clearPath.bind(this);
   }
 
   setPath(path, place) {
     const {leftPath, rightPath} = this.state;
 
     if (place === 'right') {
-      this.setState({leftPath:leftPath, rightPath:path})
+      this.setState({leftPath:leftPath, rightPath:path});
     }
 
     if (place === 'left') {
       this.setState({leftPath:path, rightPath:rightPath})
     }
+  }
+
+  clearPath() {
+    this.setState({leftPath: UNSELECTED, rightPath: UNSELECTED});
   }
 
   render() {
@@ -38,8 +43,7 @@ export default class App extends Component {
         <BrowserRouter>
         <div id='router'>
           <Route exact path={getRootHtmlPath()} render={(props)=> <Loader setPath={this.setPath} rightPath={rightPath} leftPath={leftPath} history={props.history}/>} />
-          <Route exact path="/" render={(props)=> <Loader setPath={this.setPath} rightPath={UNSELECTED} leftPath={UNSELECTED} history={props.history}/>}  />
-          <Route path="/result" render={(props) => <OverLook leftPath={leftPath} rightPath={rightPath} history={props.history} />}/>
+          <Route path="/result" render={(props) => <OverLook clearPath={this.clearPath} leftPath={leftPath} rightPath={rightPath} history={props.history} />}/>
         </div>
         </BrowserRouter>
       </MuiThemeProvider>

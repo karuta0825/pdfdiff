@@ -14,8 +14,6 @@ export default class Load extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      leftPath : UNSELECTED,
-      rightPath : UNSELECTED,
       isDisabled : true,
       err: null
     }
@@ -26,6 +24,7 @@ export default class Load extends Component {
 
   setFilePath(path, place) {
     const {leftPath, rightPath, setPath} = this.props;
+    const {isDisabled} = this.state;
 
     setPath(path,place);
 
@@ -75,7 +74,7 @@ export default class Load extends Component {
       const after = await ls(getAfterDir());
       const len = (before.length - after.length > 0) ? after.length : before.length
 
-      for ( var i=0; i < len; i += 1) {
+      for ( let i=0; i < len; i += 1) {
         await makeDiff(
           getBeforeDir() + '/' + before[i],
           getAfterDir() + '/' + after[i],

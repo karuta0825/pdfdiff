@@ -18,6 +18,10 @@ export default class FileSelect extends Component {
     });
   }
 
+  componentWillUnmount() {
+    ipc.removeAllListeners('selected-file');
+  }
+
   onDrop(e) {
     e.preventDefault();
     const file = e.dataTransfer.files[0];

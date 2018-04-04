@@ -3,7 +3,7 @@ import styles from '../../css/app.css';
 import ThumbList from './ThumbList';
 import ImageViewer from './ImageViewer';
 import {ls} from '../../utils/FileOperation';
-import {getDiffDir, getBeforeDir, getAfterDir} from '../../utils/Path';
+import {getDiffDir, getBeforeDir, getAfterDir, getRootHtmlPath} from '../../utils/Path';
 import Header from './Header';
 
 const closeStyles = {
@@ -38,7 +38,9 @@ export default class OverLook extends Component {
   }
 
   backLoadView() {
-    this.props.history.push('/');
+    const { history, clearPath } = this.props;
+    clearPath();
+    history.push(getRootHtmlPath());
   }
 
   render() {
