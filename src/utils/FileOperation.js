@@ -1,4 +1,5 @@
 import fs from 'fs';
+import remove from 'remove'
 
 /**
  * unix ls command
@@ -21,7 +22,7 @@ export function ls(path) {
   })
 }
 
-function isExist(path) {
+export function isExist(path) {
   return new Promise((res, rej) => {
     fs.access(path, err => {
       if(err) {
@@ -33,19 +34,15 @@ function isExist(path) {
   })
 }
 
-function simpleMkdir(path) {
+export async function mkdir(path) {
+  const result = await isExist(path);
+  if (result) { return 'end' };
   return new Promise((res, rej) => {
     fs.mkdir(path, err => {
       if(err) { rej(err); }
       res('end');
     })
   })
-}
-
-export async function mkdir(path) {
-  const result = await isExist(path);
-  if (result) { return 'end' };
-  await simpleMkdir(path);
 }
 
 export function rm(path) {
@@ -62,4 +59,15 @@ export async function rmdir(path) {
   for ( let i=0; i<list.length; i += 1 ) {
     await rm(path + '/' + list[i]);
   }
+}
+
+export async function rmrf(path) {
+  const result = await isExist(path);
+  if (!result) { return 'end' };
+  return new Promise((res, rej) => {
+    remove(path, err => {
+      if(err) {rej(err)}
+        res('end');
+    })
+  });
 }
