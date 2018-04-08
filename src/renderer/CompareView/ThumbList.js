@@ -1,6 +1,8 @@
 import React from 'react';
 import styles from '../../css/app.css';
 import Thumbnail from './Thumbnail';
+import List from 'material-ui/List';
+
 
 export default function ThumbList({thumbnails, onClick}) {
 
@@ -10,9 +12,9 @@ export default function ThumbList({thumbnails, onClick}) {
 
   return (
     <div id='thumbnails'>
-      <ul>
+      <List component="nav">
         {list}
-      </ul>
+      </List>
     </div>
   );
 
