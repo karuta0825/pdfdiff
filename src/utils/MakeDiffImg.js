@@ -13,8 +13,8 @@ function readImage(path) {
 function writeImage(diff, output) {
   return new Promise((res, rej) => {
     const w = diff.pack().pipe(fs.createWriteStream(output));
-    w.on('close', function() {
-      res('end')
+    w.on('close', () => {
+      res('end');
     });
   })
 }
