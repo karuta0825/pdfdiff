@@ -51,19 +51,9 @@ export default class Load extends Component {
   }
 
   async initDir() {
-
     await rmrf(getImgDir());
     await mkdir(getImgDir());
     await mkdir(getDiffDir());
-
-    // windowsで使うかも
-    // await mkdir(getImgDir());
-    // await mkdir(getDiffDir());
-    // await mkdir(getBeforeDir());
-    // await mkdir(getAfterDir());
-    // await rmdir(getDiffDir());
-    // await rmdir(getBeforeDir());
-    // await rmdir(getAfterDir());
   }
 
   async makeImgs() {
