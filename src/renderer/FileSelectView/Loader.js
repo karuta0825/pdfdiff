@@ -3,12 +3,12 @@ import styles from '../../css/app.css';
 import FileSelect from './FileSelect';
 import makeDiff from '../../utils/MakeDiffImg';
 import convert from '../../utils/Pdf2Img';
-import {ls} from '../../utils/FileOperation';
-import {getDiffDir, getBeforeDir, getAfterDir} from '../../utils/Path';
+import { ls, mkdir, rmrf, rmdir } from '../../utils/FileOperation';
+import {getDiffDir, getBeforeDir, getAfterDir, getImgDir} from '../../utils/Path';
 import MakingModal from './MakingModal';
 import Header from './Header';
 import ErrorDialog from '../UtilComponents/ErrorDialog';
-import {UNSELECTED} from '../constants';
+import { UNSELECTED } from '../constants';
 
 export default class Load extends Component {
   constructor(props) {
@@ -50,6 +50,16 @@ export default class Load extends Component {
     return true;
   }
 
+  async initDir() {
+    await mkdir(getImgDir());
+    await mkdir(getDiffDir());
+    await mkdir(getBeforeDir());
+    await mkdir(getAfterDir());
+    await rmdir(getDiffDir());
+    await rmdir(getBeforeDir());
+    await rmdir(getAfterDir());
+  }
+
   async makeImgs() {
 
     const {leftPath, rightPath} = this.props;
@@ -69,6 +79,7 @@ export default class Load extends Component {
 
     try {
 
+      await this.initDir();
       await this.makeImgs();
       const before = await ls(getBeforeDir());
       const after = await ls(getAfterDir());
