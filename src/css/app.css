@@ -72,11 +72,13 @@ html, body {
   list-style: none;
 }
 
-.thumbnail__img, .thumbnail__index {
+.thumbnail__img {
   width: 150px;
 }
 
 .thumbnail__index {
+  width: 30px;
+  color: white;
   text-align: center;
 }
 

@@ -8,7 +8,9 @@ export default function Thumbnail({imgSrc, index, onClick}) {
   return (
     <ListItem className="thumbnail" button onClick={onClick}>
       <div className="thumbnail__index">
-        {index}
+        <Typography variant='body2'>
+          {index}
+        </Typography>
       </div>
       <img className="thumbnail__img" src={src} />
     </ListItem>
