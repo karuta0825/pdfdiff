@@ -41,10 +41,10 @@ export default class App extends Component {
     return (
       <MuiThemeProvider>
         <BrowserRouter>
-        <div id='router'>
-          <Route exact path={getRootHtmlPath()} render={(props)=> <Loader setPath={this.setPath} rightPath={rightPath} leftPath={leftPath} history={props.history}/>} />
-          <Route path="/result" render={(props) => <OverLook clearPath={this.clearPath} leftPath={leftPath} rightPath={rightPath} history={props.history} />}/>
-        </div>
+          <div id='router'>
+            <Route exact path={getRootHtmlPath()} render={(props)=> <Loader setPath={this.setPath} rightPath={rightPath} leftPath={leftPath} history={props.history}/>} />
+            <Route path="/result" render={(props) => <OverLook clearPath={this.clearPath} leftPath={leftPath} rightPath={rightPath} history={props.history} />}/>
+          </div>
         </BrowserRouter>
       </MuiThemeProvider>
     )
