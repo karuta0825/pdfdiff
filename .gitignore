@@ -2,3 +2,4 @@
 /dist
 /images
 *.pdf
+package-lock.json
