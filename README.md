@@ -7,6 +7,10 @@ electronで作った２つのpdfを比較するアプリです。
 
 ![イメージ](https://user-images.githubusercontent.com/9998881/45592675-0343f200-b9af-11e8-9cdc-649d7e1dad5d.gif)
 
+依存モジュール
+- [ImageMagick](https://www.imagemagick.org/script/index.php)
+- [ghostScript](https://www.ghostscript.com/)
+
 #### 動作環境
  [x] Windows  
  [x] Mac  
