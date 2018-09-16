@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 const config = [
@@ -45,22 +46,27 @@ const config = [
     devtool: 'source-map',
     module: {
       rules:[
-      {
-        test: /\.js$/,
-        exclude: path.resolve(__dirname, 'node_modules'),
-        loader: 'babel-loader',
-        query: {
-          presets: ['react', 'es2015'],
-          plugins:['transform-class-properties']
+        {
+          test: /\.js$/,
+          exclude: path.resolve(__dirname, 'node_modules'),
+          loader: 'babel-loader',
+          query: {
+            presets: ['react', 'es2015'],
+            plugins:['transform-class-properties']
+          },
         },
-      },
-      {
-        test: /\.css$/,
-        exclude: path.resolve(__dirname, 'node_modules'),
-        loader: ['style-loader', 'css-loader']
-      }
+        {
+          test: /\.css$/,
+          exclude: path.resolve(__dirname, 'node_modules'),
+          loader: ['style-loader', 'css-loader']
+        },
       ]
-    }
+    },
+    plugins: [
+      new HtmlWebpackPlugin({
+        template: "./src/renderer/index.html"
+      })
+    ],
   }
 ]
 
